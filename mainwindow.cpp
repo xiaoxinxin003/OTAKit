@@ -41,7 +41,7 @@ void MainWindow::on_scriptButton_clicked()
 {
     scriptFileName = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                       "",
-                                                      tr("*.sh"));
+                                                      tr("*.py"));
     qDebug() << ("scriptFileName == " + scriptFileName).toStdString().c_str();
 }
 
@@ -56,14 +56,7 @@ void MainWindow::on_outputButton_clicked()
 void MainWindow::on_startButon_clicked()
 {
     QString cmd = (scriptFileName + " -i " + basicPakcageName + " " + targetPakcageName + " " + outputPackageName).toStdString().c_str();
-//    process->startDetached(cmd);
-    process->start("git log", QStringList() << "E:\\code\files");
-    QByteArray output = process->readAllStandardOutput();
-
-    QString str_output = output;
-    ui->textEdit->setText(str_output);
-    process->waitForFinished();
-    process->close();
+    process->startDetached(cmd);
 }
 
 
